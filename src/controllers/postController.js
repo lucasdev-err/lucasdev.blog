@@ -31,16 +31,16 @@ const criarPost = async(req, res) => {
     }
 }
 
-// const deletarPost = async(req, res) => {
-//     const { id } = req.params;
+const deletarPost = async(req, res) => {
+    const { id } = req.params;
 
-//     try {
-//         const res = await pool.query(`DELETE FROM posts WHERE id = ${id}`);
-//         res.status(200).json({ message: 'Post deletado com sucesso' });
-//     } catch (error) {
-//         res.status(500).json({ error: error.message });
-//     }
-// }
+    try {
+        const result = await pool.query(`DELETE FROM posts WHERE id = ${id}`);
+        res.status(200).json({ message: 'Post deletado com sucesso' });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+}
 
 module.exports = {
     listarPosts,
