@@ -36,7 +36,19 @@ const deletarPost = async(req, res) => {
 
     try {
         const result = await pool.query(`DELETE FROM posts WHERE id = ${id}`);
-        res.status(200).json({ message: 'Post deletado com sucesso' });
+        res.status(200).json({ message: 'Post deletado com sucesso!' });
+    } catch (error){
+        res.status(500).json({ error: error.message });
+    }
+}
+
+const editarPost = async(req, res) => {
+    const { id } = req.params;
+    const { titulo, descricao, conteudo } = req.body;
+
+    try {
+        const result = await pool.query(`UPDATE posts SET titulo = '${titulo}', descricao = '${descricao}', conteudo = '${conteudo}' WHERE id = '${id}'`);
+        res.status(200).json({ message: 'Post editado com sucesso!'});
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
@@ -46,5 +58,6 @@ module.exports = {
     listarPosts,
     listarPost,
     criarPost,
-    deletarPost
+    deletarPost,
+    editarPost
 };
