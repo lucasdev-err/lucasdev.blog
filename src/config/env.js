@@ -7,5 +7,8 @@ module.exports = {
     },
     db: {
         connectionString: process.env.CONNECTION_STRING
+    },
+    jwt: {
+        secret: process.env.SECRET
     }
 };
