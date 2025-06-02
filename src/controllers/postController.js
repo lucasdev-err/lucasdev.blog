@@ -24,7 +24,7 @@ const criarPost = async(req, res) => {
     const { titulo, descricao, conteudo } = req.body;
 
     try {
-        const result = await pool.query(`INSERT INTO posts (titulo, descricao, conteudo, criado_em) VALUES ('${titulo}', '${descricao}', '${conteudo}', NOW())`);
+        const result = await pool.query(`INSERT INTO posts (titulo, conteudo) VALUES ('${titulo}', '${conteudo}')`);
         res.status(201).json(result.rows[0]);
     } catch (error) {
         res.status(500).json({ error: error.message });
@@ -47,7 +47,7 @@ const editarPost = async(req, res) => {
     const { titulo, descricao, conteudo } = req.body;
 
     try {
-        const result = await pool.query(`UPDATE posts SET titulo = '${titulo}', descricao = '${descricao}', conteudo = '${conteudo}' WHERE id = '${id}'`);
+        const result = await pool.query(`UPDATE posts SET titulo = '${titulo}', conteudo = '${conteudo}' WHERE id = '${id}'`);
         res.status(200).json({ message: 'Post editado com sucesso!'});
     } catch (error) {
         res.status(500).json({ error: error.message });

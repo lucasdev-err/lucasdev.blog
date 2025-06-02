@@ -3,7 +3,7 @@ const pool = require('../db/db');
 const listarUsers = async (req, res) => {
     try {
         const result = await pool.query('SELECT * FROM users');
-        res.status(200).json(result.row);
+        res.status(200).json(result.rows);
     } catch (error) {
         res.status(500).json({error: error.message});
     }
