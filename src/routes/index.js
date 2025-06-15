@@ -2,6 +2,7 @@ const express = require("express");
 const postRoutes = require("./postRoutes");
 // Importa o arquivo de rotas
 const userRoutes = require("./userRoutes");
+const autenticacao = require("./authRoute");
 const router = express.Router();
 
 router.get("/", (req, res) => {
@@ -9,6 +10,7 @@ router.get("/", (req, res) => {
 });
 
 router.use("/posts", postRoutes);
-// router.use("/users", userRoutes);
+router.use("/users", userRoutes);
+router.use("/auth", autenticacao);
 
 module.exports = router;
