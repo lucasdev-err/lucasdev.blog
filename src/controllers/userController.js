@@ -1,6 +1,6 @@
 const pool = require('../db/db');
 
-const listarUsers = async (req, res) => {
+const listarUsers = async (req, res, next) => {
     try {
         const result = await pool.query('SELECT * FROM users');
         res.status(200).json(result.rows);

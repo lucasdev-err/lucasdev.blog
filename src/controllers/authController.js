@@ -9,7 +9,7 @@ const loginUser = async (req, res) => {
 
     try {
         const result = await pool.query('SELECT * FROM users WHERE email = $1', [email]);
-        const user = result.row[0];
+        const user = result.rows[0];
 
         if (!user) return res.status(401).json({ error: 'Usuario nao encontrado.' });
 
@@ -26,5 +26,5 @@ const loginUser = async (req, res) => {
 }
 
 module.exports = {
-    loginUser
+    loginUser,
 }
